@@ -64,6 +64,10 @@ The main objective of this project is to transform raw business data into meanin
 - Revenue analysis
 - Customer purchase behavior
 - Data consistency validation using SQL
+- Warehouse F handles 33% of all orders
+- 40% of deliveries are late
+- Road shipment gets highest customer rating
+- High importance products get most discount
 
 ---
 
