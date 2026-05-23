@@ -31,11 +31,11 @@ The main objective of this project is to transform raw business data into meanin
 
 ### 📊 E-Commerce Dashboard
 
-![Dashboard 1](Dashboard1.png)
+![Dashboard 1](E-commerce%20Project/Dashboard1.png)
 
 ### 📈 Sales Analysis Dashboard
 
-![Dashboard 2](Dashboard2.png)
+![Dashboard 2](E-commerce%20Project/Dashboard2.png)
 
 ---
 
