@@ -1,0 +1,77 @@
+mysql> USE ecommerce
+Database changed
+mysql> CREATE TABLE shipping (
+    ->     ID INT,
+    ->     Warehouse_block VARCHAR(5),
+    ->     Mode_of_Shipment VARCHAR(20),
+    ->     Customer_care_calls INT,
+    ->     Customer_rating INT,
+    ->     Cost_of_the_Product INT,
+    ->     Prior_purchases INT,
+    ->     Product_importance VARCHAR(10),
+    ->     Gender VARCHAR(5),
+    ->     Discount_offered INT,
+    ->     Weight_in_gms INT,
+    ->     On_Time VARCHAR(10)
+    -> );
+ERROR 1050 (42S01): Table 'shipping' already exists
+mysql> LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Train.csv'
+    -> INTO TABLE shipping
+    -> FIELDS TERMINATED BY ','
+    -> ENCLOSED BY '"'
+    -> LINES TERMINATED BY '\n'
+    -> IGNORE 1 ROWS;
+Query OK, 10999 rows affected (0.23 sec)
+Records: 10999  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> SELECT Warehouse_block, COUNT(*) as Total_Orders
+    -> FROM shipping
+    -> GROUP BY Warehouse_block
+    -> ORDER BY Total_Orders DESC;
++-----------------+--------------+
+| Warehouse_block | Total_Orders |
++-----------------+--------------+
+| F               |         3666 |
+| D               |         1834 |
+| A               |         1833 |
+| B               |         1833 |
+| C               |         1833 |
++-----------------+--------------+
+5 rows in set (0.04 sec)
+
+mysql> SELECT On_Time, COUNT(*) as Total
+    -> FROM shipping
+    -> GROUP BY On_Time;
++---------+-------+
+| On_Time | Total |
++---------+-------+
+   0   |  6563 |
+   1   |  4436 |
++---------+-------+
+2 rows in set (0.02 sec)
+
+mysql> SELECT Mode_of_Shipment, AVG(Customer_rating) as Avg_Rating
+    -> FROM shipping
+    -> GROUP BY Mode_of_Shipment
+    -> ORDER BY Avg_Rating DESC;
++------------------+------------+
+| Mode_of_Shipment | Avg_Rating |
++------------------+------------+
+| Road             |     2.9955 |
+| Ship             |     2.9913 |
+| Flight           |     2.9826 |
++------------------+------------+
+3 rows in set (0.02 sec)
+
+mysql> SELECT Product_importance, AVG(Discount_offered) as Avg_Discount
+    -> FROM shipping
+    -> GROUP BY Product_importance
+    -> ORDER BY Avg_Discount DESC;
++--------------------+--------------+
+| Product_importance | Avg_Discount |
++--------------------+--------------+
+| high               |      14.6667 |
+| medium             |      13.4832 |
+| low                |      13.0430 |
++--------------------+--------------+
+3 rows in set (0.02 sec)
